@@ -33,14 +33,12 @@ int main(int* argc, char** argv)
         
         insert(myLinkedList, rand()%10 + 1); 
     }
- 
-    insert(myLinkedList, 34); 
+    
     read(myLinkedList); 
-    LinkedList* myLinkedList2 = create_list(); 
-    insert(myLinkedList2, 34); 
-    if(exists(myLinkedList2, 34)) printf("\nFound it!\n"); 
     delete_all(myLinkedList); 
     read(myLinkedList); 
+
+    free(myLinkedList); 
     
     return 0; 
 }
