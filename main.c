@@ -16,6 +16,7 @@ typedef struct LinkedList {
 LinkedList* create_list(); 
 void insert(LinkedList*, int); 
 void read(LinkedList*); 
+void delete_at(LinkedList*, int); 
 
 int main(int* argc, char** argv) 
 {
@@ -29,6 +30,8 @@ int main(int* argc, char** argv)
         insert(myLinkedList, rand()%10 + 1); 
     }
 
+    read(myLinkedList); 
+    delete_at(myLinkedList, 3); 
     read(myLinkedList); 
     free(myLinkedList); 
     
@@ -81,4 +84,31 @@ void read(LinkedList* list) {
         }    
     }
     printf("]"); 
+}
+
+void delete_at(LinkedList* list, int index) {
+    /* The idea is to point to the first element, get the next Node and point to it. 
+    We have to do this until we reach the place juste before the node that we want to delete 
+    We get the "next Node" next pointer, save it somewhere
+    Then, delete the node at index and put the "after" Node into the "Before" node*/
+
+    if(index > list->size - 1) {
+        printf("ERROR: Cannot reach index %d. Index value is greater that the size of the list. ", index); 
+        return; // exit the delete_at function preventing further execution
+    }
+
+    Node* ptr_to_before = list->head; 
+    Node* ptr_to_index = NULL; 
+    Node* ptr_to_after = NULL; 
+    for(size_t i = 0; i < index - 1; i++){
+        ptr_to_before = ptr_to_before->next; 
+        //printf("Pointing to element %d\n", i); 
+    }
+    ptr_to_index = ptr_to_before->next; 
+    ptr_to_after = ptr_to_index->next; 
+
+    free(ptr_to_index); 
+
+    ptr_to_before->next = ptr_to_after; 
+
 }
