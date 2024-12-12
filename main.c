@@ -17,6 +17,7 @@ LinkedList* create_list();
 void insert(LinkedList*, int); 
 void read(LinkedList*); 
 void delete_at(LinkedList*, int); 
+void delete_all(LinkedList*); 
 
 int main(int* argc, char** argv) 
 {
@@ -24,16 +25,15 @@ int main(int* argc, char** argv)
     // if malloc fails, exit the program.
     if (myLinkedList == NULL) return -1; 
 
-    // puts 10 random values into the linked list. Just for test purposes. 
+    // puts 10 random values range 0-10 into the linked list. Just for test purposes. 
     for(size_t i = 0; i < 10; i++) {
         
         insert(myLinkedList, rand()%10 + 1); 
     }
 
     read(myLinkedList); 
-    delete_at(myLinkedList, 3); 
+    delete_all(myLinkedList); 
     read(myLinkedList); 
-    free(myLinkedList); 
     
     return 0; 
 }
@@ -93,22 +93,41 @@ void delete_at(LinkedList* list, int index) {
     Then, delete the node at index and put the "after" Node into the "Before" node*/
 
     if(index > list->size - 1) {
-        printf("ERROR: Cannot reach index %d. Index value is greater that the size of the list. ", index); 
+        printf("ERROR: Cannot reach index %d. List size is %d\n", index, list->size); 
         return; // exit the delete_at function preventing further execution
     }
-
     Node* ptr_to_before = list->head; 
     Node* ptr_to_index = NULL; 
     Node* ptr_to_after = NULL; 
-    for(size_t i = 0; i < index - 1; i++){
-        ptr_to_before = ptr_to_before->next; 
-        //printf("Pointing to element %d\n", i); 
+    if(list->size > 1) {
+        // if list is size 0, list->head is pointing to NULL... segfaulting if we dereference. 
+        for(size_t i = 0; i < index - 1; i++){
+            ptr_to_before = ptr_to_before->next; 
+        }
+        ptr_to_index = ptr_to_before->next; 
+        ptr_to_after = ptr_to_index->next; 
+
+        free(ptr_to_index); 
+
+        ptr_to_before->next = ptr_to_after; 
+    } else {
+        free(list->head); 
+        list->head = NULL; 
     }
-    ptr_to_index = ptr_to_before->next; 
-    ptr_to_after = ptr_to_index->next; 
+    list->size--; 
+}
 
-    free(ptr_to_index); 
+void delete_all(LinkedList* list) {
+    /* The main idea is to go at the end of the list where the last element is and free() it 
+    Do it again until there is no elements anymore */
 
-    ptr_to_before->next = ptr_to_after; 
+    Node* ptr = list->head; 
+    if(ptr == NULL) return; // No need to delete elements if the link list is empty...
+    while(list->size > 0) { 
+        delete_at(list, (list->size)-1); 
+        // no need to update the list->size thing, because delete_at() already does it. 
+    }
+    // pretty hacky way to do it, but 
 
+    // for now, we keep the LinkedList* up and running, it makes my life (and debugging) lest tedious. 
 }
