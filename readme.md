@@ -1,7 +1,7 @@
 # Roadmap
 ## Linked list 
 
-* Check if value exists
+* ~~Check if value exists~~
 * Get element at index
 * ~~Delete element at index~~
 * Delete the first occurence of element

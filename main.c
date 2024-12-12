@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 // Structs for Node & LinkedList
 typedef struct Node {
@@ -18,6 +19,8 @@ void insert(LinkedList*, int);
 void read(LinkedList*); 
 void delete_at(LinkedList*, int); 
 void delete_all(LinkedList*); 
+_Bool exists(LinkedList*, int); 
+
 
 int main(int* argc, char** argv) 
 {
@@ -30,8 +33,12 @@ int main(int* argc, char** argv)
         
         insert(myLinkedList, rand()%10 + 1); 
     }
-
+ 
+    insert(myLinkedList, 34); 
     read(myLinkedList); 
+    LinkedList* myLinkedList2 = create_list(); 
+    insert(myLinkedList2, 34); 
+    if(exists(myLinkedList2, 34)) printf("\nFound it!\n"); 
     delete_all(myLinkedList); 
     read(myLinkedList); 
     
@@ -130,4 +137,21 @@ void delete_all(LinkedList* list) {
     // pretty hacky way to do it, but 
 
     // for now, we keep the LinkedList* up and running, it makes my life (and debugging) lest tedious. 
+}
+
+_Bool exists(LinkedList* list, int elt) {
+    if(list->size == 0) return false; 
+    if(list->size == 1) {
+        if(list->head->data == elt) return true; 
+        if(list->head->data != elt) return false;
+    }
+
+    // this way we eliminate the "pathological cases" of dereferencing a NULL ptr and makes the following code more natural
+    Node* ptr = list->head; 
+    while(ptr->next != NULL) { 
+        if(ptr->data = elt) return true; // if elt is found inside the data section of the *ptr break the loop, quit the current function now...
+        ptr = ptr->next; 
+    }
+    return false; // otherwise... 
+
 }
