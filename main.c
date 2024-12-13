@@ -19,6 +19,7 @@ void insert(LinkedList*, int);
 void read(LinkedList*); 
 void delete_at(LinkedList*, int); 
 void delete_all(LinkedList*); 
+void delete_elt(LinkedList*, int); 
 _Bool exists(LinkedList*, int); 
 
 
@@ -33,10 +34,13 @@ int main(int argc, char** argv)
         
         insert(myLinkedList, rand()%10 + 1); 
     }
+    insert(myLinkedList, 42); 
+    insert(myLinkedList, 42); 
     
     read(myLinkedList); 
-    delete_all(myLinkedList); 
+    delete_elt(myLinkedList, 42); 
     read(myLinkedList); 
+    delete_all(myLinkedList); 
 
     free(myLinkedList); 
     
@@ -152,4 +156,19 @@ _Bool exists(LinkedList* list, int elt) {
     }
     return false; // otherwise... 
 
+}
+
+void delete_elt(LinkedList* list, int elt) {
+    if(list->head == NULL) return; // if list is empty, don't go through it, you gonna segfault...
+
+    Node* ptr = list->head->next; // actually pointing to the second element
+    Node* ptr_before = list->head; // IT is the one pointing to index 0 
+    Node* ptr_after = NULL; 
+    while(ptr->next != NULL) {
+        ptr_after = ptr->next; 
+        ptr_before = ptr_before->next; 
+        if(ptr->data == elt) free(ptr); 
+    }
+    ptr_before->next = ptr_after; 
+    list->size--; 
 }

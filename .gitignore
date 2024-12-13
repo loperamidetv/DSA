@@ -1,3 +1,6 @@
 # Ignore all compiled files
 *.exe
 test
+.vscode/tasks.json
+main.dSYM/Contents/Info.plist
+main.dSYM/Contents/Resources/DWARF/main
