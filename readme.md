@@ -1,7 +1,7 @@
 # Roadmap
 ## Linked list 
 
-* Insert at index
+* ~~Insert at index~~
 * ~~Get element at index~~
 * ~~Delete the first occurence of element~~
 * ~~Check if value exists~~
