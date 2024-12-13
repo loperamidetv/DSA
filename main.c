@@ -39,7 +39,7 @@ int main(int argc, char** argv)
     }
     insert(myLinkedList, 42); 
     insert(myLinkedList, 42); 
-    /*
+    
     read(myLinkedList); 
     printf("Trying to delete the first 42\n"); 
     delete_elt(myLinkedList, 42); 
@@ -58,12 +58,6 @@ int main(int argc, char** argv)
     delete_elt(myLinkedList, 42); 
     printf("Here's the list after the deletion\n");
     read(myLinkedList);
-    */
-    Node* ptr_element = NULL;  
-    for(size_t i = 0; i < myLinkedList->size; i++) {
-        ptr_element = get(myLinkedList, i);
-        printf("%d\n", ptr_element->data); 
-    }
         
     
 
@@ -143,42 +137,44 @@ void delete_at(LinkedList* list, int index) {
     We have to do this until we reach the place juste before the node that we want to delete 
     We get the "next Node" next pointer, save it somewhere
     Then, delete the node at index and put the "after" Node into the "Before" node*/
-    /*
 
-    if(index > list->size - 1) {
-        printf("ERROR: Cannot reach index %d. List size is %d\n", index, list->size); 
-        return; // exit the delete_at function preventing further execution
-    }
-    Node* ptr_to_before = list->head; 
-    Node* ptr_to_index = NULL; 
-    Node* ptr_to_after = NULL; 
-    if(list->size > 1) {
-        // if list is size 0, list->head is pointing to NULL... segfaulting if we dereference. 
-        for(size_t i = 0; i < index - 1; i++){
-            ptr_to_before = ptr_to_before->next; 
-        }
-        ptr_to_index = ptr_to_before->next; 
-        ptr_to_after = ptr_to_index->next; 
-
-        free(ptr_to_index); 
-
-        ptr_to_before->next = ptr_to_after; 
-    } else {
-        free(list->head); 
-        list->head = NULL; 
-    }
-    list->size--; 
-    */ 
     if(index > list->size - 1) {
         printf("ERROR: Cannot reach index %d. List size is %d\n", index, list->size); 
         return; // exit the delete_at function preventing further execution
     } 
+    if(list->size == 0) return; // if it has nothing to delete...
     
-    for(size_t i = 0; i < index; i++) {
+    // We initialize...
+    Node* ptr_before = NULL; 
+    Node* ptr = NULL; 
+    Node* ptr_after = NULL;
+    // a little overkill, but greatly help to read the code. 
 
+    // I have to have a particular attention to the extremal cases to avoid segfaulting
+    if(index == 0) { // if we are at the first element
+        ptr_after = get(list, 1); // we point to the 2nd element
+        free(list->head); 
+        list->head = ptr_after; 
+        list->size--; 
+        return; 
+    }
+    if(index == list->size - 1) { // if we are at the end of the list...
+        ptr_before = get(list, index - 1); 
+        free(ptr_before->next); 
+        ptr_before->next = NULL; 
+        list->size--; 
+        return; 
     }
 
+    // Else...
+    ptr_before = get(list, index - 1); 
+    ptr = get(list, index); 
+    ptr_after = get(list, index + 1); // we could point to NULL, but it doesn't mind
 
+    free(ptr); 
+    list->size--; 
+    
+    
 }
 
 void delete_all(LinkedList* list) {
