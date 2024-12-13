@@ -22,7 +22,7 @@ void delete_all(LinkedList*);
 _Bool exists(LinkedList*, int); 
 
 
-int main(int* argc, char** argv) 
+int main(int argc, char** argv) 
 {
     LinkedList* myLinkedList = create_list();  
     // if malloc fails, exit the program.
@@ -88,7 +88,7 @@ void read(LinkedList* list) {
             if(ptr_node != NULL) printf(", "); // ... this line is here for formating purposes... 
         }    
     }
-    printf("]"); 
+    printf("]\n"); 
 }
 
 void delete_at(LinkedList* list, int index) {
@@ -147,7 +147,7 @@ _Bool exists(LinkedList* list, int elt) {
     // this way we eliminate the "pathological cases" of dereferencing a NULL ptr and makes the following code more natural
     Node* ptr = list->head; 
     while(ptr->next != NULL) { 
-        if(ptr->data = elt) return true; // if elt is found inside the data section of the *ptr break the loop, quit the current function now...
+        if(ptr->data == elt) return true; // if elt is found inside the data section of the *ptr break the loop, quit the current function now...
         ptr = ptr->next; 
     }
     return false; // otherwise... 
