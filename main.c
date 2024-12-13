@@ -22,6 +22,7 @@ void delete_at(LinkedList*, int);
 void delete_all(LinkedList*); 
 void delete_elt(LinkedList*, int); 
 _Bool exists(LinkedList*, int); 
+void insert_at(LinkedList*, int, int); 
 
 
 int main(int argc, char** argv) 
@@ -39,19 +40,6 @@ int main(int argc, char** argv)
     }
     insert(myLinkedList, 42); 
     insert(myLinkedList, 42); 
-    
-
-    read(myLinkedList); 
-    delete_elt(myLinkedList, 42); 
-    read(myLinkedList); 
-    delete_elt(myLinkedList, 42);
-    read(myLinkedList); 
-    delete_elt(myLinkedList, 42);
-    read(myLinkedList);
-    delete_elt(myLinkedList, 42);
-    read(myLinkedList);
-    delete_elt(myLinkedList, 10); 
-    read(myLinkedList); 
     
 
     free(myLinkedList); 
@@ -161,11 +149,8 @@ void delete_at(LinkedList* list, int index) {
 
     // Else...
     ptr_before = get(list, index - 1); 
-    printf("data before is %d\n", ptr_before->data); 
     ptr = get(list, index); 
-    printf("I found it %d\n", ptr->data); 
-    ptr_after = get(list, index + 1); // we could point to NULL, but it doesn't mind
-    printf("data after is %d\n", ptr_after->data); 
+    ptr_after = get(list, index + 1); // we could point to NULL, but it doesn't mind 
     ptr_before->next = ptr_after;
     free(ptr); 
     list->size--; 
@@ -200,6 +185,10 @@ _Bool exists(LinkedList* list, int elt) {
         ptr = ptr->next; 
     }
     return false; // otherwise... 
+
+}
+
+void insert_at(LinkedList* list, int index, int elt) {
 
 }
 
