@@ -40,25 +40,16 @@ int main(int argc, char** argv)
     insert(myLinkedList, 42); 
     insert(myLinkedList, 42); 
     
+
     read(myLinkedList); 
-    printf("Trying to delete the first 42\n"); 
     delete_elt(myLinkedList, 42); 
+    read(myLinkedList); 
+    delete_elt(myLinkedList, 42);
+    read(myLinkedList); 
+    delete_elt(myLinkedList, 42);
     read(myLinkedList);
-    printf("Trying to delete the second to last 42\n");  
-    delete_elt(myLinkedList, 42); 
-    read(myLinkedList); 
-    printf("Trying to delete the last 42\n");
-    delete_elt(myLinkedList, 42); 
-    read(myLinkedList);   
-    delete_all(myLinkedList); 
-    printf("Clean the list, make one with one 42 and try to delete it\n"); 
-    insert(myLinkedList, 42); 
-    printf("Here's the list\n");
-    read(myLinkedList); 
-    delete_elt(myLinkedList, 42); 
-    printf("Here's the list after the deletion\n");
+    delete_elt(myLinkedList, 42);
     read(myLinkedList);
-        
     
 
     free(myLinkedList); 
@@ -170,10 +161,9 @@ void delete_at(LinkedList* list, int index) {
     ptr_before = get(list, index - 1); 
     ptr = get(list, index); 
     ptr_after = get(list, index + 1); // we could point to NULL, but it doesn't mind
-
     free(ptr); 
+    ptr_before->next = ptr_after; 
     list->size--; 
-    
     
 }
 
@@ -213,11 +203,13 @@ void delete_elt(LinkedList* list, int elt) {
 
     if(list->size == 0) return; // if the list is empty, there is no elt to delete. 
     
+    // we gonna use our delete_at() function to get the id of the first occurence of the element; 
     Node* ptr = list->head; 
-    for(size_t i = 0; i < list->size; i++) {
-        if(ptr->data == elt){
-            delete_at(list, i); 
+    for(size_t index = 0; index < list->size; index++) {
+        if(elt == ptr->data) {
+            delete_at(list, index); 
             return; 
-        } 
+        }
+        ptr = ptr->next;  
     }
 }
