@@ -17,6 +17,7 @@ typedef struct LinkedList {
 LinkedList* create_list(); 
 void insert(LinkedList*, int); 
 void read(LinkedList*); 
+Node* get(LinkedList*, int); 
 void delete_at(LinkedList*, int); 
 void delete_all(LinkedList*); 
 void delete_elt(LinkedList*, int); 
@@ -29,6 +30,8 @@ int main(int argc, char** argv)
     // if malloc fails, exit the program.
     if (myLinkedList == NULL) return -1; 
 
+    insert(myLinkedList, 42); 
+
     // puts 10 random values range 0-10 into the linked list. Just for test purposes. 
     for(size_t i = 0; i < 10; i++) {
         
@@ -36,11 +39,33 @@ int main(int argc, char** argv)
     }
     insert(myLinkedList, 42); 
     insert(myLinkedList, 42); 
-    
+    /*
     read(myLinkedList); 
+    printf("Trying to delete the first 42\n"); 
+    delete_elt(myLinkedList, 42); 
+    read(myLinkedList);
+    printf("Trying to delete the second to last 42\n");  
     delete_elt(myLinkedList, 42); 
     read(myLinkedList); 
+    printf("Trying to delete the last 42\n");
+    delete_elt(myLinkedList, 42); 
+    read(myLinkedList);   
     delete_all(myLinkedList); 
+    printf("Clean the list, make one with one 42 and try to delete it\n"); 
+    insert(myLinkedList, 42); 
+    printf("Here's the list\n");
+    read(myLinkedList); 
+    delete_elt(myLinkedList, 42); 
+    printf("Here's the list after the deletion\n");
+    read(myLinkedList);
+    */
+    Node* ptr_element = NULL;  
+    for(size_t i = 0; i < myLinkedList->size; i++) {
+        ptr_element = get(myLinkedList, i);
+        printf("%d\n", ptr_element->data); 
+    }
+        
+    
 
     free(myLinkedList); 
     
@@ -95,11 +120,30 @@ void read(LinkedList* list) {
     printf("]\n"); 
 }
 
+Node* get(LinkedList* list, int index) {
+    /*
+    The only purpose of this function is to get the pointer to Node at the index I choose.
+    I had at several occasions the unpleasant surprise of discovering that I needed the element at a certain index AND the element 
+    before it. It sucked, I raged and I decided to make a function only to do that. 
+    I don't care that I need to go through another loop, it's basically O(n)*2 which basically means O(n) and it makes my life easier.
+    Plus, I need to get a particular element basically EVERYTIME so... DRY I guess.
+    Cheers!
+    */
+    Node* ptr = list->head; 
+    
+    // Code refactoring incoming... this loop appears everywhere...
+    for(size_t i = 0; i < list->size; i++) {
+        if(index == i) return ptr; 
+        ptr = ptr->next; 
+    }
+}
+
 void delete_at(LinkedList* list, int index) {
     /* The idea is to point to the first element, get the next Node and point to it. 
     We have to do this until we reach the place juste before the node that we want to delete 
     We get the "next Node" next pointer, save it somewhere
     Then, delete the node at index and put the "after" Node into the "Before" node*/
+    /*
 
     if(index > list->size - 1) {
         printf("ERROR: Cannot reach index %d. List size is %d\n", index, list->size); 
@@ -124,6 +168,17 @@ void delete_at(LinkedList* list, int index) {
         list->head = NULL; 
     }
     list->size--; 
+    */ 
+    if(index > list->size - 1) {
+        printf("ERROR: Cannot reach index %d. List size is %d\n", index, list->size); 
+        return; // exit the delete_at function preventing further execution
+    } 
+    
+    for(size_t i = 0; i < index; i++) {
+
+    }
+
+
 }
 
 void delete_all(LinkedList* list) {
@@ -136,7 +191,6 @@ void delete_all(LinkedList* list) {
         delete_at(list, (list->size)-1); 
         // no need to update the list->size thing, because delete_at() already does it. 
     }
-    // pretty hacky way to do it, but 
 
     // for now, we keep the LinkedList* up and running, it makes my life (and debugging) lest tedious. 
 }
@@ -147,8 +201,8 @@ _Bool exists(LinkedList* list, int elt) {
         if(list->head->data == elt) return true; 
         if(list->head->data != elt) return false;
     }
-
     // this way we eliminate the "pathological cases" of dereferencing a NULL ptr and makes the following code more natural
+    
     Node* ptr = list->head; 
     while(ptr->next != NULL) { 
         if(ptr->data == elt) return true; // if elt is found inside the data section of the *ptr break the loop, quit the current function now...
@@ -159,16 +213,15 @@ _Bool exists(LinkedList* list, int elt) {
 }
 
 void delete_elt(LinkedList* list, int elt) {
-    if(list->head == NULL) return; // if list is empty, don't go through it, you gonna segfault...
+    // Get the index of the elt to delete and use delete_at() function
 
-    Node* ptr = list->head->next; // actually pointing to the second element
-    Node* ptr_before = list->head; // IT is the one pointing to index 0 
-    Node* ptr_after = NULL; 
-    while(ptr->next != NULL) {
-        ptr_after = ptr->next; 
-        ptr_before = ptr_before->next; 
-        if(ptr->data == elt) free(ptr); 
+    if(list->size == 0) return; // if the list is empty, there is no elt to delete. 
+    
+    Node* ptr = list->head; 
+    for(size_t i = 0; i < list->size; i++) {
+        if(ptr->data == elt){
+            delete_at(list, i); 
+            return; 
+        } 
     }
-    ptr_before->next = ptr_after; 
-    list->size--; 
 }
