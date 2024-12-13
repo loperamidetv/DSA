@@ -31,15 +31,19 @@ int main(int argc, char** argv)
     // if malloc fails, exit the program.
     if (myLinkedList == NULL) return -1; 
 
-    insert(myLinkedList, 42); 
-
     // puts 10 random values range 0-10 into the linked list. Just for test purposes. 
     for(size_t i = 0; i < 10; i++) {
         
         insert(myLinkedList, rand()%10 + 1); 
     }
-    insert(myLinkedList, 42); 
-    insert(myLinkedList, 42); 
+
+    read(myLinkedList); 
+    insert_at(myLinkedList, 0, 99); 
+    read(myLinkedList);  
+    insert_at(myLinkedList, 5, 99); 
+    read(myLinkedList);  
+    insert_at(myLinkedList, 11, 99); 
+    read(myLinkedList);  
     
 
     free(myLinkedList); 
@@ -189,7 +193,47 @@ _Bool exists(LinkedList* list, int elt) {
 }
 
 void insert_at(LinkedList* list, int index, int elt) {
+    if(index > list->size - 1) {
+         printf("ERROR: Cannot reach index %d. List size is %d\n", index, list->size);
+        return; 
+    }
+    if(list->size == 0) {
+        insert(list, elt); 
+        return;
+    }
 
+    Node* ptr_before = NULL;
+    Node* ptr_after = NULL; 
+    Node* ptr = (Node*) malloc(sizeof(Node)); 
+    if(ptr == NULL) return; // if malloc failed, exit the function
+    ptr->data = elt; // properly initializing
+    
+    /*
+    3 possible cases, doint it like this for memory access issues, more readable yadiyada 
+    1. beginning of the list 
+    2. "in the middle" 
+    3. at the end 
+    */
+    if(index == 0) { // case 1
+        ptr_after = get(list, 0); 
+        ptr->next = ptr_after;
+        list->head = ptr; 
+        list->size++; 
+        return; 
+    }
+    if(index != list->size -1) { // case 2
+        ptr_before = get(list, index-1); 
+        ptr_after = get(list, index); 
+        ptr_before->next = ptr; 
+        ptr->next = ptr_after; 
+        list->size++; 
+        return; 
+    } else { // case 3
+        ptr_before = get(list, index); 
+        ptr_before->next = ptr;
+        ptr->next = ptr_after; // ptr_after already null
+        list->size++; 
+    }
 }
 
 void delete_elt(LinkedList* list, int elt) {
