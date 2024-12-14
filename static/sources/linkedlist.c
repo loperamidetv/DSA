@@ -124,8 +124,15 @@ void remove_at(LinkedList* list, int index) {
 
     // else
     Node* ptr = list->head; 
-    for(size_t i = 0; i < index; i++){
+    for(size_t i = 0; i < index-1; i++){
         ptr = ptr->next; 
     }
+    Node* link = ptr->next->next; // I don't point to next, I going to find the elemnt after next. 
+    // Ex : if ptr is on index 4, link is going point to point to index 6.
+    free(ptr->next); 
+    ptr->next = link; 
+
+    list->size--; 
+
 
 }

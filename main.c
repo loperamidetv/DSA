@@ -13,7 +13,11 @@ int main(int argc, int** argv){
         printf("List size is now %d\n", list->size); 
     }
 
-    _remove_end(list); 
+    remove_at(list, 5); 
+    display(list); 
+    remove_at(list, 0); 
+    display(list); 
+    remove_at(list, 8); 
     display(list); 
     printf("List size is now %d\n", list->size); 
     return 0; 
