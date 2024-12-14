@@ -20,6 +20,6 @@ void display(LinkedList*);
 void _insert_begining(LinkedList*, int); 
 void insert_at(LinkedList*, int, int); 
 void insert(LinkedList*, int); 
-
+void _remove_begining(LinkedList*); 
 
 #endif 

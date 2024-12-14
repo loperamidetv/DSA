@@ -85,5 +85,13 @@ void insert(LinkedList* list, int elt) {
     list->size++; 
 }
 
+void _remove_begining(LinkedList* list) {
+    if(list->size == 0) return; // if no elements to remove
 
+    Node* ptr = list->head; 
+    list->head = ptr->next; 
+
+    free(ptr); 
+    list->size--; 
+}
 
