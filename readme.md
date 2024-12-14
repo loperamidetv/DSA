@@ -7,8 +7,9 @@ I've read some pretty neat ressources about DSA and my goal is to implement them
 
 ### Here's the new roadmap : 
 #### List creation and extension
-* Struct creation 
-* Insert a element at the begining of the list
+* ~~Struct creation ~~
+* ~~Insert a element at the begining of the list~~
+* ~~display a list~~
 * Insert at the end of the list
 * Insert at the n-th position
 
