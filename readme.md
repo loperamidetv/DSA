@@ -24,6 +24,8 @@ I've read some pretty neat ressources about DSA and my goal is to implement them
 
 #### For the future...
 For now, I'm gonna implement what I planned to do, in the future we will see...
+Probably... :
+* Reverse the linked list
 
 ### Here is the "old roadmap":
 
