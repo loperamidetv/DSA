@@ -7,7 +7,7 @@ int main(int argc, int** argv){
     printf("List created!\n"); 
     
     for(size_t i = 0; i <= 10; i++) {
-        _insert_begining(list, i); 
+        insert(list, i); 
         display(list); 
     }
 

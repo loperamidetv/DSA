@@ -18,5 +18,6 @@ typedef struct LinkedList {
 LinkedList* create_list(); 
 void display(LinkedList*); 
 void _insert_begining(LinkedList*, int); 
+void insert(LinkedList*, int); 
 
 #endif 

@@ -37,5 +37,25 @@ void _insert_begining(LinkedList* list, int elt) {
     list->head = new_element; 
 }
 
+void insert(LinkedList* list, int elt) {
+    // Insert at the end of the list
+    Node* new_elt = (Node*) malloc(sizeof(Node)); 
+    if(new_elt == NULL) return; 
+    new_elt->data = elt; 
+    new_elt->next = NULL; 
+    
+    Node* ptr = list->head; 
+
+    if(ptr == NULL) {
+        _insert_begining(list, elt); 
+        return ; 
+    }
+    // else... basically if list is not empty, go through it
+    while(ptr->next != NULL) {
+        ptr = ptr->next; 
+    }
+    ptr->next = new_elt;  
+}
+
 
 
