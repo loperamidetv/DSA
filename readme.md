@@ -23,6 +23,7 @@ I've read some pretty neat ressources about DSA and my goal is to implement them
 #### Operation on elements
 * get an element at the n-th position
 * ~~check if an element is in the list~~
+* change an element at index n to another element
 
 
 #### For the future...
