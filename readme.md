@@ -14,7 +14,7 @@ I've read some pretty neat ressources about DSA and my goal is to implement them
 * ~~Insert at the n-th position~~
 
 #### Removing elements and destruction of the list
-* Remove at the begining
+* ~~Remove at the begining~~
 * Remove at the end
 * Remove at the n-th position 
 * Remove all the element and destruction of the list
