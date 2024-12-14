@@ -17,10 +17,13 @@ I've read some pretty neat ressources about DSA and my goal is to implement them
 * ~~Remove at the begining~~
 * ~~Remove at the end~~
 * ~~Remove at the n-th position~~ 
-* Remove all the element and destruction of the list
+* Remove the first occurence of an element
+* ~~Remove all the element and destruction of the list~~
 
-#### Get elements
+#### Operation on elements
 * get an element at the n-th position
+* check if an element is in the list
+
 
 #### For the future...
 For now, I'm gonna implement what I planned to do, in the future we will see...
