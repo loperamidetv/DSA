@@ -12,12 +12,14 @@ typedef struct Node {
 typedef struct LinkedList {
     Node* head; 
     unsigned int size; 
-    _Bool is_initialized; 
+    _Bool is_initialized;
 } LinkedList;
 
 LinkedList* create_list(); 
 void display(LinkedList*); 
 void _insert_begining(LinkedList*, int); 
+void insert_at(LinkedList*, int, int); 
 void insert(LinkedList*, int); 
+
 
 #endif 

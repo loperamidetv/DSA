@@ -11,7 +11,7 @@ I've read some pretty neat ressources about DSA and my goal is to implement them
 * ~~Insert a element at the begining of the list~~
 * ~~display a list~~
 * ~~Insert at the end of the list~~
-* Insert at the n-th position
+* ~~Insert at the n-th position~~
 
 #### Removing elements and destruction of the list
 * Remove at the begining
