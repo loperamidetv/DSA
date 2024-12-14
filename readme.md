@@ -19,6 +19,9 @@ I've read some pretty neat ressources about DSA and my goal is to implement them
 * Remove at the n-th position 
 * Remove all the element and destruction of the list
 
+#### Get elements
+* get an element at the n-th position
+
 #### For the future...
 For now, I'm gonna implement what I planned to do, in the future we will see...
 
