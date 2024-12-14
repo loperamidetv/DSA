@@ -13,12 +13,8 @@ int main(int argc, int** argv){
         printf("List size is now %d\n", list->size); 
     }
 
-    remove_at(list, 5); 
-    display(list); 
-    remove_at(list, 0); 
-    display(list); 
-    remove_at(list, 8); 
-    display(list); 
-    printf("List size is now %d\n", list->size); 
+    if(is_in(list, 5)) printf("Found it!\n"); 
+    if(is_in(list, 0)) printf("Found it!\n"); 
+    if(is_in(list, 10)) printf("Found it!\n"); 
     return 0; 
 }

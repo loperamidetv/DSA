@@ -23,5 +23,7 @@ void insert(LinkedList*, int);
 void _remove_begining(LinkedList*); 
 void _remove_end(LinkedList*); 
 void remove_at(LinkedList*, int); 
+void delete(LinkedList*);
+_Bool is_in(LinkedList*, int); 
 
 #endif 

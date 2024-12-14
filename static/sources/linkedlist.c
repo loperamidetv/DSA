@@ -133,6 +133,22 @@ void remove_at(LinkedList* list, int index) {
     ptr->next = link; 
 
     list->size--; 
+}
 
+void delete(LinkedList* list) {
+    while(true){
+        if(list->size == 0) return; 
+        _remove_begining(list); 
+    }
+}
 
+_Bool is_in(LinkedList* list, int elt) {
+    if (list->size == 0) return false; 
+
+    Node* ptr = list->head; 
+    while(ptr != NULL) {
+        if(ptr->data == elt) return true; 
+        ptr = ptr->next; 
+    }
+    return false; 
 }
