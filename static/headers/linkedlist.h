@@ -1,16 +1,20 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
-#endif 
+
 
 #include <stdbool.h>
 
-typedef struct Node {
+typedef struct {
     int data; 
     struct Node* next;
 } Node; 
 
-typedef struct LinkedList {
+typedef struct {
     Node* head; 
     unsigned int size; 
     _Bool is_initialized; 
 } LinkedList;
+
+LinkedList* create_list(); 
+
+#endif 

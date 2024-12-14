@@ -1,6 +1,10 @@
 # Ignore all compiled files
 *.exe
 test
+
+# vscode related stuff 
 .vscode/tasks.json
 main.dSYM/Contents/Info.plist
 main.dSYM/Contents/Resources/DWARF/main
+.vscode/settings.json
+.vscode/c_cpp_properties.json
