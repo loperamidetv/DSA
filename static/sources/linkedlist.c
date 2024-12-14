@@ -95,3 +95,20 @@ void _remove_begining(LinkedList* list) {
     list->size--; 
 }
 
+void _remove_end(LinkedList* list) {
+    if(list->size == 0) return; // nothing to delete...
+
+    Node* ptr = list->head; 
+    while(ptr->next->next != NULL) { // it works, but... what about readability?
+        ptr = ptr->next; 
+    }
+    printf("Data is %d\n", ptr->data); 
+    free(ptr->next); 
+    ptr->next = NULL; 
+    
+    list->size--; 
+} 
+
+void remove_at(LinkedList* list, int index) {
+    
+}

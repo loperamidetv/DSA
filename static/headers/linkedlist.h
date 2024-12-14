@@ -21,5 +21,7 @@ void _insert_begining(LinkedList*, int);
 void insert_at(LinkedList*, int, int); 
 void insert(LinkedList*, int); 
 void _remove_begining(LinkedList*); 
+void _remove_end(LinkedList*); 
+void remove_at(LinkedList*, int); 
 
 #endif 
