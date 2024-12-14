@@ -102,7 +102,7 @@ void _remove_end(LinkedList* list) {
     while(ptr->next->next != NULL) { // it works, but... what about readability?
         ptr = ptr->next; 
     }
-    printf("Data is %d\n", ptr->data); 
+  
     free(ptr->next); 
     ptr->next = NULL; 
     
@@ -110,5 +110,22 @@ void _remove_end(LinkedList* list) {
 } 
 
 void remove_at(LinkedList* list, int index) {
-    
+    if(list->size == 0) return; // if list empty, nothing to delete
+    if(index > list->size-1) return; // no such index in our list
+
+    if(index == 0) {
+        _remove_begining(list); 
+        return; 
+    }
+    if(index == list->size-1){
+        _remove_end(list); 
+        return; 
+    }
+
+    // else
+    Node* ptr = list->head; 
+    for(size_t i = 0; i < index; i++){
+        ptr = ptr->next; 
+    }
+
 }
