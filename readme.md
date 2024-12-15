@@ -30,14 +30,3 @@ I've read some pretty neat ressources about DSA and my goal is to implement them
 For now, I'm gonna implement what I planned to do, in the future we will see...
 Probably... :
 * Reverse the linked list
-
-### Here is the "old roadmap":
-
-* ~~Insert at index~~
-* ~~Get element at index~~
-* ~~Delete the first occurence of element~~
-* ~~Check if value exists~~
-* ~~Delete element at index~~
-* ~~Delete the list properly without memory leaks~~
-* ~~Insert at the end of the list~~
-* ~~Creation, initialization~~
