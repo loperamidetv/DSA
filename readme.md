@@ -17,7 +17,7 @@ I've read some pretty neat ressources about DSA and my goal is to implement them
 * ~~Remove at the begining~~
 * ~~Remove at the end~~
 * ~~Remove at the n-th position~~ 
-* Remove the first occurence of an element
+* ~~Remove the first occurence of an element~~
 * ~~Remove all the element and destruction of the list~~
 
 #### Operation on elements

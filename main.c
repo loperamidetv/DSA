@@ -12,9 +12,12 @@ int main(int argc, int** argv){
         display(list); 
         printf("List size is now %d\n", list->size); 
     }
-
-    if(is_in(list, 5)) printf("Found it!\n"); 
-    if(is_in(list, 0)) printf("Found it!\n"); 
-    if(is_in(list, 10)) printf("Found it!\n"); 
+    display(list);
+    remove_elt(list, 0); 
+    display(list);
+    remove_elt(list, 5); 
+    display(list);
+    remove_elt(list, 10); 
+    display(list);
     return 0; 
 }

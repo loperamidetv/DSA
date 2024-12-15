@@ -25,5 +25,6 @@ void _remove_end(LinkedList*);
 void remove_at(LinkedList*, int); 
 void delete(LinkedList*);
 _Bool is_in(LinkedList*, int); 
+void remove_elt(LinkedList*, int); 
 
 #endif 

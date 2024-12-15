@@ -152,3 +152,16 @@ _Bool is_in(LinkedList* list, int elt) {
     }
     return false; 
 }
+
+void remove_elt(LinkedList* list, int elt) {
+    if(!is_in(list, elt)) return; 
+
+    Node* ptr = list->head; 
+    for(size_t i = 0; i <= list->size-1; i++) {
+        if(ptr->data == elt) {
+            remove_at(list, i); 
+            return; 
+        }
+        ptr = ptr->next; 
+    }
+}
