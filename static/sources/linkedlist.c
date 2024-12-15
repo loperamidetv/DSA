@@ -176,3 +176,10 @@ Node* get_elt(LinkedList* list, int index) {
     }
     return ptr;       
 }
+
+void change(LinkedList* list, int index, int elt) {
+    if(index > list->size-1) return; 
+
+    Node* ptr = get_elt(list, index); 
+    ptr->data = elt; 
+}
