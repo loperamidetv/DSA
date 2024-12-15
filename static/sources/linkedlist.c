@@ -165,3 +165,14 @@ void remove_elt(LinkedList* list, int elt) {
         ptr = ptr->next; 
     }
 }
+
+Node* get_elt(LinkedList* list, int index) {
+    Node* ptr = NULL; 
+    if(index > list->size-1) return ptr; // return NULL
+
+    ptr = list->head; 
+    for(size_t i = 0; i < index; i++) {
+        ptr = ptr->next; 
+    }
+    return ptr;       
+}

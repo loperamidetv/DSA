@@ -13,11 +13,11 @@ int main(int argc, int** argv){
         printf("List size is now %d\n", list->size); 
     }
     display(list);
-    remove_elt(list, 0); 
-    display(list);
-    remove_elt(list, 5); 
-    display(list);
-    remove_elt(list, 10); 
-    display(list);
+    get_elt(list, 0); 
+    printf("element 0's data is %d\n", get_elt(list, 0)->data); 
+    get_elt(list, 5);
+    printf("element 5's data is %d\n", get_elt(list, 5)->data); 
+    get_elt(list, 10);
+    printf("element 10's data is %d\n", get_elt(list, 10)->data);
     return 0; 
 }
