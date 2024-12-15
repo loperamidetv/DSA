@@ -5,7 +5,7 @@ I'm actually refactoring some code right now. Writing the way I wrote, it raised
 
 I've read some pretty neat ressources about DSA and my goal is to implement them the best I can. 
 
-### Here's the new roadmap : 
+### Roadmap : 
 #### List creation and extension
 * ~~Struct creation~~
 * ~~Insert a element at the begining of the list~~
