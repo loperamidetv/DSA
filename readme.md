@@ -32,3 +32,13 @@ Probably... :
 * Reverse the linked list by iteration
 * Reverse the linked list by recursion
 * Display the list in reverse 
+
+## Doubly linked list
+
+## Stacks
+
+## Queues
+
+## Trees 
+
+## Graphs
