@@ -34,6 +34,15 @@ Probably... :
 * Display the list in reverse 
 
 ## Doubly linked list
+Basically, I'm going to follow the to-do list for the Linked List.
+
+### Roadmap : 
+#### List creation and extension
+* Struct creation
+* Insert a element at the begining of the list
+* Display a list
+* Insert at the end of the list
+* Insert at the n-th position
 
 ## Stacks
 
